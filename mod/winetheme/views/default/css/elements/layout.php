@@ -69,7 +69,7 @@ border-bottom: 1px solid #000000;
 	background: #4690D6 url(<?php echo elgg_get_site_url(); ?>_graphics/header_shadow.png) repeat-x bottom left;
 background: #800000;
 background: url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/images/logo.png') no-repeat;
-background-position: center top;
+background-position: center left;
         }
         
 .elgg-page-header > .elgg-inner {
