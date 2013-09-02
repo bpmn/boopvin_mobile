@@ -49,7 +49,7 @@ $CONFIG->dbpass = '';
  *
  * @global string $CONFIG->dbname
  */
-$CONFIG->dbname = 'avenue_data';
+$CONFIG->dbname = 'mobile_data';
 
 /**
  * The database host.

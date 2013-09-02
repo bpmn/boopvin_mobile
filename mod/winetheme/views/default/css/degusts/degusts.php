@@ -294,6 +294,7 @@ background-position: right center;
     border-width: 1px;
     border-style: none;
     width: 250px;
+   
 }
 
 .elgg-page-body-degust .elgg-layout {

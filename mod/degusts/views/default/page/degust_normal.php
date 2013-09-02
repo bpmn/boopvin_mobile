@@ -53,9 +53,7 @@ $lang = get_current_language();
     
     
 <div class="elgg-page elgg-page-default">
-	<div class="elgg-page-messages">
-		<?php echo $messages; ?>
-	</div>
+	
 	
 	<?php if (elgg_is_logged_in()): ?>
 	<div class="elgg-page-topbar">
