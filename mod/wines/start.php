@@ -275,7 +275,14 @@ function wine_page_handler($page) {
 			break;
 		case 'profile':
                         elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'addtocave_owner_block_menu');
-			wine_handle_profile_page($page[1],$page[3]);
+			//MOBILE
+                        elgg_load_js('elgg.wine');
+                        elgg_load_js('elgg.validate');
+                        elgg_load_js('elgg.modal');
+                        elgg_load_js('elgg.degust');
+                        elgg_load_js('elgg.popup');
+            
+                        wine_handle_profile_page($page[1]);
 			break;
 		case 'activity': 
 			wine_handle_activity_page($page[1]);
@@ -289,6 +296,48 @@ function wine_page_handler($page) {
 		case 'requests':
 			wine_handle_requests_page($page[1]);
 			break;
+                case 'addtocave':
+			wine_handle_addtocave_page($page[1]);
+			break;        
+		default:
+			return false;
+	}
+	return true;
+}
+
+//wine page handler pour la version mobile
+//MOBILE
+function wine_page_handler_mobile($page) {
+
+	elgg_load_library('wine');
+
+	elgg_push_breadcrumb(elgg_echo('wine'), "wine/all");
+
+	switch ($page[0]) {
+		case 'all':
+			wine_handle_all_page();
+			break;
+		case 'search':
+			wine_search_page();
+			break;
+		case 'owner':
+			wine_handle_owned_page();
+			break;
+		case 'member':
+			set_input('username', $page[1]);
+			wine_handle_mine_page();
+			break;
+		case 'add':
+			wine_handle_edit_page('add');
+			break;
+		case 'edit':
+			wine_handle_edit_page('edit', $page[1]);
+			break;
+		case 'profile':
+                        elgg_load_js('elgg.wine');
+                        wine_handle_profile_page($page[1]);
+			break;
+		
                 case 'addtocave':
 			wine_handle_addtocave_page($page[1]);
 			break;        

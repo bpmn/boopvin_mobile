@@ -33,6 +33,11 @@ function degust_init(){
 	elgg_register_js('elgg.degust', $degust_js,'footer');
         //elgg_load_js('elgg.degust');
         
+        //MOBILE
+        $degust_js_mobile = elgg_get_simplecache_url('js', 'degust_mobile');
+	elgg_register_simplecache_view('js/degust_mobile');
+	elgg_register_js('elgg.degust_mobile', $degust_js_mobile,'footer');
+        
         elgg_register_plugin_hook_handler('register', 'menu:entity', 'degust_entity_menu_setup');
         elgg_register_plugin_hook_handler('permissions_check', 'object', 'degust_override_permissions');
         elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'degust_setup_owner_block_menu');
@@ -186,9 +191,11 @@ function degust_page_handler($page) {
 	switch ($page[0]) {
 	
 		case 'add':
-                        set_input('entity_guid',$page[1]);
-                        set_input('annee',$page[2]);
-			degust_handle_edit_page('add');
+                        //set_input('entity_guid',$page[1]);
+                        //set_input('annee',$page[2]);
+                        //elgg_load_js('elgg.degust_mobile');
+                        //elgg_load_js('elgg.validate');
+			degust_handle_edit_page('add',$page[1],$page[2]);
 			break;
 		case 'edit':
                         set_input('entity_guid',$page[1]);

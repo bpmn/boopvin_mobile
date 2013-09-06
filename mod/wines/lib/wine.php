@@ -259,12 +259,9 @@ function wine_handle_invitations_page() {
 function wine_handle_profile_page($guid) {
         elgg_set_page_owner_guid($guid);
         //elgg_load_js('elgg.googlemap');
-        elgg_load_js('elgg.wine');
-        elgg_load_js('elgg.modal');
-	elgg_load_js('elgg.validate');
-        elgg_load_js('elgg.degust');
-        elgg_load_js('elgg.popup');
-  
+        
+        //MOBILE
+        //suppression des chargements des scripts voir wine_page_handler
        
      
 
@@ -278,7 +275,9 @@ function wine_handle_profile_page($guid) {
 	if (!$wine) {
 		forward('wine/all');
 	}
-
+        
+        
+        
 	elgg_push_breadcrumb($wine->name);
 
 	$content = elgg_view('wines/profile/layout', array('entity' => $wine));
@@ -295,8 +294,9 @@ function wine_handle_profile_page($guid) {
 		$sidebar = '';
 	}
         
-        
-	wine_register_profile_buttons($wine);
+        wine_register_profile_buttons($wine);
+
+	
         
 
 	$params = array(
@@ -499,7 +499,7 @@ function wine_register_profile_buttons($wine) {
             $url = elgg_get_site_url() . "wine/edit/{$wine->getGUID()}";
             $actions[$url] = 'wine:edit';
             
-            $url = elgg_normalize_url("degust/add/{$wine->getGUID()}/");
+            $url = elgg_normalize_url("degust/add/{$wine->getGUID()}/overlay");
             $url = elgg_add_action_tokens_to_url($url);
             $actions[$url] = 'degust:add';
             

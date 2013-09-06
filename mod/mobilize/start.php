@@ -46,6 +46,11 @@ function mobilize_init(){
 		if (elgg_get_plugin_setting('use_friendspicker', 'mobilize') == 'yes'){			
 			elgg_unregister_js('elgg.friendspicker');
 		}
+                
+                elgg_unregister_page_handler('wine', 'wine_page_handler');
+                elgg_register_page_handler('wine', 'wine_page_handler_mobile');
+
+                
 						
 		elgg_unregister_js('elgg.tinymce');	
 		elgg_extend_view('page/elements/head','mobilize/meta', 1);
@@ -141,7 +146,13 @@ function mobilize_setup_handler() {
 	//	'text' => elgg_echo('mobilize:elgg'),
 	//	'priority' => 2,
 	//	'section' => 'alt',
-	//));	
+	//));
+        
+        // Register a page handler, so we can have nice URLs
+	
+        elgg_register_plugin_hook_handler('output:before', 'layout', 'change_degust_add_menu');
+        
+        
 
 	if (elgg_is_logged_in()) {		
 		if (elgg_is_active_plugin('dashboard')) {
@@ -194,6 +205,15 @@ function mobilize_setup_handler() {
 				'text' => elgg_echo('messages') . $text,
 			));
 		}
+                
+                
+                
+                
+                
+                
+                
+                
+                
 	}	
 	if (elgg_is_admin_logged_in()) {		
 		elgg_register_menu_item('footer', array(
@@ -204,4 +224,32 @@ function mobilize_setup_handler() {
 			'section' => 'alt',
 		));
 	}
+}
+
+/**
+ * Add the rss link to the extras when if needed
+ *
+ * @return void
+ * @access private
+ */
+function change_degust_add_menu() {
+	if (elgg_unregister_menu_item('title', 'degust:add')){
+        $wine_guid=elgg_get_page_owner_guid();     
+        $url = elgg_normalize_url("degust/add/{$wine_guid}");
+        $url = elgg_add_action_tokens_to_url($url);
+        $text = 'degust:add';
+                
+        $link_class='elgg-button elgg-button-action degust-add';
+                        
+        elgg_register_menu_item('title', array(
+				'name' => $text,
+				'href' => $url,
+				'text' => elgg_echo($text),
+				'link_class' => $link_class,
+                                //'title'=>$text.':title'
+                                //'target' =>"_blank",
+                                //'rel'=>'#overlay',
+			));
+        
+         }
 }

@@ -116,10 +116,10 @@ function degust_handle_wine_page() {
  * @param string $page
  * @param int $guid
  */
-function degust_handle_edit_page($page, $guid = 0) {
+function degust_handle_edit_page($page,$guid,$overlay) {
            
         gatekeeper();
-	$guid=(int)get_input('entity_guid');
+	//$guid=(int)get_input('entity_guid');
 	if ($page == 'add') {
 		$wine = get_entity($guid);
 		if (!($wine instanceof ElggGroup)) {
@@ -185,8 +185,15 @@ function degust_handle_edit_page($page, $guid = 0) {
 	$body = elgg_view_layout('degust_one_column', $params);
         //echo $body;
 
-	echo elgg_view_page($title, $body,'overlay');
-        //echo elgg_view_page($title, $body);
+	//MOBILE
+        if ($overlay =="overlay"){
+            echo elgg_view_page($title, $body,'overlay');
+        }else{
+            elgg_load_js('elgg.degust_mobile');
+            elgg_load_js('elgg.validate');
+            echo elgg_view_page($title, $body,'degust_normal');
+            
+        }
 }
 
 
@@ -197,7 +204,7 @@ function degust_handle_edit_page($page, $guid = 0) {
  * @param int $guid Group entity GUID
  */
 function degust_handle_profile_page($guid,$overlay) {
-    
+        
 	if ($overlay != "overlay"){
          gatekeeper();
         }
@@ -244,12 +251,13 @@ function degust_handle_profile_page($guid,$overlay) {
 	$body ="<div class='elgg-page-body-degust'>". elgg_view_layout('degust_one_sidebar', $params)."</div>";
         //$body = elgg_view_layout('content', $params);
         
+       
         if ($overlay =="overlay"){
             echo elgg_view_page($title, $body,'overlay');
         }else{
         //echo elgg_view_page($title, $body,'degust_normal');
-        
-         echo elgg_view_page($title, $body);
+     
+            echo elgg_view_page($title, $body);
         }
 }
 
