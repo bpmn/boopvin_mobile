@@ -23,7 +23,7 @@
                             
                   
     $( function() {
-        degust_tab();
+        //degust_tab();
         degust_button();
         degust_validate();
         option_price();
@@ -118,7 +118,7 @@
                             var overlaydegustation = overlayfield.getAttribute('data-overlay'); // check if we are in degustation mode
                             
                             if(overlaydegustation == "overlay_degustation") {
-                                degust_tab();
+                                //degust_tab();
                                 degust_button();
                                 degust_validate();
                                 option_price();
@@ -153,7 +153,7 @@
             
         } 
         
-        function degust_tab() {
+/*        function degust_tab() {
             var $items = $('#vtab>ul>li');
             $items.click(function() {
                 $items.removeClass('selected');
@@ -162,7 +162,7 @@
                 var index = $items.index($(this));
                 $('#vtab>div').hide().eq(index).show();
             }).eq(0).click();
-        }
+        }*/
         
         
         

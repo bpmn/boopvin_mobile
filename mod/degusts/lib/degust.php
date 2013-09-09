@@ -179,18 +179,20 @@ function degust_handle_edit_page($page,$guid,$overlay) {
                 //'class'=>'elgg-overlay'
                 
 	);
-        	
+        //MOBILE	
 	
 
-	$body = elgg_view_layout('degust_one_column', $params);
+	
         //echo $body;
 
-	//MOBILE
+	
         if ($overlay =="overlay"){
+            $body = elgg_view_layout('degust_one_column', $params);
             echo elgg_view_page($title, $body,'overlay');
         }else{
             elgg_load_js('elgg.degust_mobile');
             elgg_load_js('elgg.validate');
+            $body = elgg_view_layout('degust_one_column_mobile', $params);
             echo elgg_view_page($title, $body,'degust_normal');
             
         }
