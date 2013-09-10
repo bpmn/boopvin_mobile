@@ -198,8 +198,7 @@ function degust_page_handler($page) {
 			degust_handle_edit_page('add',$page[1],$page[2]);
 			break;
 		case 'edit':
-                        set_input('entity_guid',$page[1]);
-			degust_handle_edit_page('edit');
+                        degust_handle_edit_page('edit',$page[1],$page[2]);
 			break;
 		case 'profile':
 			degust_handle_profile_page($page[1],$page[2]);

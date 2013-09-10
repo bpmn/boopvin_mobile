@@ -82,9 +82,7 @@
    });     
         
    function degust_view_bind(){
-            
-      
-       
+           
        
            $(".degust-view").nyroModal({
                 callbacks: {             
@@ -400,12 +398,16 @@ function degust_validate() {
             var data=$("#degustform :input").serialize();
             var page_guid=elgg.get_page_owner_guid();
             data=data+"&page_owner_guid="+page_guid;
-            
+            //MOBILE
             elgg.action(url,{
                     data:data,
-                    success: function(resulthtml, success, xhr) {
+                    dataType :'json',
+                    success: function(json) {
                                 $.nmTop().close();
-                                $('.degust_list').html(resulthtml.output);
+                                //$('.degust_list').html(resulthtml.output);
+                                
+                                alert(json.list_degust);
+                                $('.degust_list').html(json.list_degust);
                                 degust_view_bind();
                             }
             

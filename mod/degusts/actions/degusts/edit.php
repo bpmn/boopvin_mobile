@@ -92,11 +92,19 @@ $options = array(
          );
 if (elgg_instanceof($page_owner_entity,'user')){
    $options['owner_guid'] =$page_owner_guid;
+   
 }else{
    $options['container_guid'] =$page_owner_guid; 
 }
+//MOBILE
+$url=$page_owner_entity->getURL();
+$list_degust=elgg_list_entities($options);
+$result=array("list_degust"=>$list_degust,"url"=>$url);
 
-echo elgg_list_entities($options);
+
+echo json_encode($result);
+exit;
+
 
 // Forward to the page the action occurred on
 //forward(REFERER);

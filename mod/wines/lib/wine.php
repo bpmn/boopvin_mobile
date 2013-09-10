@@ -499,6 +499,7 @@ function wine_register_profile_buttons($wine) {
             $url = elgg_get_site_url() . "wine/edit/{$wine->getGUID()}";
             $actions[$url] = 'wine:edit';
             
+			//MOBILE
             $url = elgg_normalize_url("degust/add/{$wine->getGUID()}/overlay");
             $url = elgg_add_action_tokens_to_url($url);
             $actions[$url] = 'degust:add';

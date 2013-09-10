@@ -241,7 +241,7 @@ function degust_handle_profile_page($guid,$overlay) {
 
 	$content = elgg_view('degusts/profile/layout', array('entity' => $degust));
         $sidebar = elgg_view('degusts/profile/sidebar', array('entity' => $degust));
-        
+        $title=$degust->title;
 		
 
 	$params = array(
@@ -261,9 +261,9 @@ function degust_handle_profile_page($guid,$overlay) {
             echo elgg_view_page($title, $body,'overlay');
         }else{
         //echo elgg_view_page($title, $body,'degust_normal');
-         $title=$degust->title;
-         echo elgg_view_page($title, $body);
-    }
+     
+            echo elgg_view_page($title, $body);
+        }
 }
 
 

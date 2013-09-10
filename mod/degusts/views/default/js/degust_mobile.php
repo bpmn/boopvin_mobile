@@ -350,10 +350,9 @@ function degust_validate() {
             
             elgg.action(url,{
                     data:data,
-                    success: function(resulthtml, success, xhr) {
-                                $.nmTop().close();
-                                $('.degust_list').html(resulthtml.output);
-                                degust_view_bind();
+                    dataType :'json',
+                    success: function(json) {
+                                elgg.forward(json.url);
                             }
             
                 });
