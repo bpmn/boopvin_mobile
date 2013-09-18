@@ -404,9 +404,6 @@ function degust_validate() {
                     dataType :'json',
                     success: function(json) {
                                 $.nmTop().close();
-                                //$('.degust_list').html(resulthtml.output);
-                                
-                                alert(json.list_degust);
                                 $('.degust_list').html(json.list_degust);
                                 degust_view_bind();
                             }
@@ -482,9 +479,10 @@ $(".degust-requires-confirmation").click(function(e) {
             var page_guid=elgg.get_page_owner_guid();
             elgg.action(url,{
                     data:{page_owner_guid:page_guid},
-                    success: function(json, success, xhr) {
+                    dataType :'json',
+                    success: function(json) {
                                 $.nmTop().close();
-                                $('.degust_list').html(json.output);
+                                $('.degust_list').html(json.list_degust);
                                 degust_view_bind();
                             }
             

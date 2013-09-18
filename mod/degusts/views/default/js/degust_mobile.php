@@ -24,73 +24,34 @@
                   
     $( function() {
         //degust_tab();
+        degust_edit();
         degust_button();
         degust_validate();
         option_price();
         degust_event();
-        degust_view_bind();
+        
    });     
         
-   function degust_view_bind(){
-      
-           $(".degust-view").nyroModal({
-                callbacks: {             
-                    initElts: function() {
-                        if (!elgg.is_logged_in()) {
-		
-                
-                
-                            elgg.register_error(elgg.echo('loggedinrequired'));
-                            $.nmTop().close();
-                    //e.preventDefault();
-                    //elgg.register_error(elgg.echo('loggedinrequired'))
-                    //elgg.forward('');
-                            };
-                        
-                        $(".elgg-page-topbar").css({
-                            "z-index":" 0"
-                        });
-                        $(".elgg-menu-site").css({
-                            "z-index":" 0"
-                        });    
-                    },
-                    filledContent: function(){
-                        
-                        degust_edit();
-                        
-                    },
-                    beforeClose: function() {
-                        $(".elgg-page-topbar").css({
-                            "z-index":" 9000"
-                        });
-                        $(".elgg-menu-site").css({
-                            "z-index":" 1"
-                        });
-                    }
-                }
-                
-            });
-               
-          
-   }
+   
         
         //les fonctions
         
         
         
-       function degust_edit (action){
+ function degust_edit (action){
             
             $(".degust-edit").click(function(e){    
                 
                 e.preventDefault();
-                var action= $(this).attr('data-action'); 
-                $.nmTop().close();
-                edit_overlay_degust(action);
+                var action= $(this).attr('data-action');
+                var edit_url=elgg.normalize_url('degust/'+action);
+                elgg.forward(edit_url);
+                //edit_overlay_degust(action);
             });
         }
         
         
-        function edit_overlay_degust(action) {
+    /*    function edit_overlay_degust(action) {
             
             var edit_url=elgg.normalize_url('degust/'+action);
             
@@ -151,7 +112,7 @@
                 
             });
             
-        } 
+        } */
         
 /*        function degust_tab() {
             var $items = $('#vtab>ul>li');
@@ -426,10 +387,9 @@ $(".degust-requires-confirmation").click(function(e) {
             var page_guid=elgg.get_page_owner_guid();
             elgg.action(url,{
                     data:{page_owner_guid:page_guid},
-                    success: function(json, success, xhr) {
-                                $.nmTop().close();
-                                $('.degust_list').html(json.output);
-                                degust_view_bind();
+                    dataType :'json',
+                    success: function(json) {
+                                elgg.forward(json.url);
                             }
             
                 });
@@ -440,9 +400,9 @@ $(".degust-requires-confirmation").click(function(e) {
 }
 
 function option_price(){
-var array_euro=new Array("","&lt;6€","6€-10€","10€-15€","15€-20€","20€-25€","25€-30€","30€-40€","40€-50€","60€-70€","70€-80€","80€-100€","&gt;100€");
-var array_dollar=new Array("","&lt;$10","$10-$15","$15-$20","$20-$25","$25-$30","$30-$40","$40-$50","$60-$70","$70-$80","$80-$100","&gt;$100");
-var array_livre=new Array("","&lt;£10","£10-£15","£15-£20","£20-£25","£25-£30","£30-£40","£40-£50","£60-£70","£70-£80","£80-£100","&gt;£100");
+var array_euro=new Array("","&lt;6€","6€-10€","10€-15€","15€-20€","20€-25€","25€-30€","30€-40€","40€-50€","50€-60€","60€-70€","70€-80€","80€-100€","&gt;100€");
+var array_dollar=new Array("","&lt;$10","$10-$15","$15-$20","$20-$25","$25-$30","$30-$40","$40-$50","$50-$60","$60-$70","$70-$80","$80-$100","&gt;$100");
+var array_livre=new Array("","&lt;£10","£10-£15","£15-£20","£20-£25","£25-£30","£30-£40","£40-£50","£50-£60","£60-£70","£70-£80","£80-£100","&gt;£100");
     $('input[name$="currency"]').change(function(){
         var monnaie=$(this).val();
         var list_option;

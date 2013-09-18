@@ -6,7 +6,6 @@
  */
 
 
-
 $degust_profile_fields = elgg_get_config('degust_profile');
 
 /*initialisation des options pour les couleurs en fonction du type de vins (blanc, rouge etc..)*/
@@ -117,7 +116,7 @@ foreach ($degust_profile_fields as $section => $elts) {
 <?php
 if ($degust->canEdit()){
                         //MOBILE
-                        $url = "edit/{$degust->getGUID()}/overlay";
+                        $url = "edit/{$degust->getGUID()}";
                         elgg_register_menu_item('edit_degust', array(
 				'name' => 'degust:edit',
 				'data-action' => $url,

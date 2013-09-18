@@ -215,6 +215,60 @@ function degust_page_handler($page) {
 	return true;
 }
 
+/**
+ * Degust page handler
+ *
+ * URLs take the form of
+ *  All wine:           degust/all
+ *  User's owned wine:  degust/owner/<username>
+ *  User's member wine: degust/member/<username>
+ *  wine profile:        degust/profile/<guid>/<title>
+ *  New wine:            degust/add/<guid>
+ *  Edit wine:           degust/edit/<guid>
+ *  wine invitations:    degust/invitations/<username>
+ *  Invite to wine:      degust/invite/<guid>
+ *  Membership requests:  degust/requests/<guid>
+ *  wine activity:       degust/activity/<guid>
+ *  wine members:        degust/members/<guid>
+ *
+ * @param array $page Array of url segments for routing
+ * @return bool
+ */
+//MOBILE
+function degust_page_handler_mobile($page) {
+
+	elgg_load_library('degust');
+
+	elgg_push_breadcrumb(elgg_echo('degust'), "degust/all");
+
+	switch ($page[0]) {
+	
+		case 'add':
+                       
+                        elgg_load_js('elgg.degust_mobile');
+                        elgg_load_js('elgg.validate');
+			degust_handle_edit_page('add',$page[1],$page[2]);
+			break;
+		case 'edit':
+                        elgg_load_js('elgg.degust_mobile');
+                        elgg_load_js('elgg.validate');
+                        degust_handle_edit_page('edit',$page[1],$page[2]);
+			break;
+		case 'profile':
+                        elgg_load_js('elgg.degust_mobile');
+			degust_handle_profile_page($page[1],$page[2]);
+                        break;
+                case 'wine':
+                        elgg_set_context('wine:degust');
+                        elgg_set_page_owner_guid($page[1]);
+                        degust_handle_wine_page();
+			break;
+
+		default:
+			return false;
+	}
+	return true;
+}
 
 
 /**

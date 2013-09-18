@@ -18,14 +18,17 @@ $options = array(
                  'full_view' => false,
                  'pagination' => true,
          );
+//MOBILE
 if (elgg_instanceof($page_owner_entity,'user')){
    $options['owner_guid'] =$page_owner_guid;
+   $url=$page_owner_entity->getURL();
 }else{
-   $options['container_guid'] =$page_owner_guid; 
+   $options['container_guid'] =$degust->getContainerGUID(); 
+   $url=$degust->getContainerEntity()->getURL();
 }
 
 if (elgg_instanceof($degust, 'object', 'degust') && ($degust->canEdit())) {
-	$container = get_entity($degust->container_guid);
+	
 	if ($degust->delete()) {
 		system_message(elgg_echo('degust:message:deleted'));
 		//if (elgg_instanceof($container, 'group')) {
@@ -33,8 +36,12 @@ if (elgg_instanceof($degust, 'object', 'degust') && ($degust->canEdit())) {
                 //}
                 
                 
-                echo elgg_list_entities($options); 
+                //MOBILE
                 
+                $list_degust=elgg_list_entities($options);
+                $result=array("list_degust"=>$list_degust,"url"=>$url);
+                echo json_encode($result);
+                exit;
                 
                 //forward(REFERER);
 	} else {

@@ -50,7 +50,13 @@ function mobilize_init(){
                 elgg_unregister_page_handler('wine', 'wine_page_handler');
                 elgg_register_page_handler('wine', 'wine_page_handler_mobile');
 
+                elgg_unregister_page_handler('degust', 'degust_page_handler');
+                elgg_register_page_handler('degust', 'degust_page_handler_mobile');
                 
+                elgg_unregister_page_handler('profile', 'profile_page_handler');
+                elgg_register_page_handler('profile', 'profile_page_handler_mobile');
+
+             
 						
 		elgg_unregister_js('elgg.tinymce');	
 		elgg_extend_view('page/elements/head','mobilize/meta', 1);
@@ -109,8 +115,8 @@ function detectmobile(){
 	if(preg_match('/(alcatel|amoi|android|avantgo|blackberry|benq|cell|cricket|docomo|elaine|htc|iemobile|iphone|ipaq|ipod|j2me|java|midp|mini|mmp|mobi|motorola|nec-|nokia|palm|panasonic|philips|phone|sagem|sharp|sie-|smartphone|sony|symbian|t-mobile|telus|up\.browser|up\.link|vodafone|wap|webos|wireless|xda|xoom|zte)/i', $_SERVER['HTTP_USER_AGENT'])) {
 		return true;
 	} else {
-		return false;
-		//return true;
+		//return false;
+		return true;
 	}
 }
 
@@ -234,14 +240,14 @@ function mobilize_setup_handler() {
  */
 function change_degust_add_menu() {
 	if (elgg_unregister_menu_item('title', 'degust:add')){
-        $wine_guid=elgg_get_page_owner_guid();     
-        $url = elgg_normalize_url("degust/add/{$wine_guid}");
-        $url = elgg_add_action_tokens_to_url($url);
-        $text = 'degust:add';
+            $wine_guid=elgg_get_page_owner_guid();     
+            $url = elgg_normalize_url("degust/add/{$wine_guid}");
+            $url = elgg_add_action_tokens_to_url($url);
+            $text = 'degust:add';
                 
-        $link_class='elgg-button elgg-button-action degust-add';
+            $link_class='elgg-button elgg-button-action degust-add';
                         
-        elgg_register_menu_item('title', array(
+            elgg_register_menu_item('title', array(
 				'name' => $text,
 				'href' => $url,
 				'text' => elgg_echo($text),
@@ -252,4 +258,8 @@ function change_degust_add_menu() {
 			));
         
          }
+         
+         
+         
+         
 }

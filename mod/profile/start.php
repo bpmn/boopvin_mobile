@@ -103,6 +103,64 @@ function profile_page_handler($page) {
 }
 
 /**
+ * Profile page handler
+ *
+ * @param array $page Array of URL segments passed by the page handling mechanism
+ * @return bool
+ */
+//MOBILE
+function profile_page_handler_mobile($page) {
+
+	if (isset($page[0])) {
+		$username = $page[0];
+		$user = get_user_by_username($username);
+		elgg_set_page_owner_guid($user->guid);
+	} elseif (elgg_is_logged_in()) {
+		forward(elgg_get_logged_in_user_entity()->getURL());
+	}
+
+	// short circuit if invalid or banned username
+	if (!$user || ($user->isBanned() && !elgg_is_admin_logged_in())) {
+		register_error(elgg_echo('profile:notfound'));
+		forward();
+	}
+
+	$action = NULL;
+	if (isset($page[1])) {
+		$action = $page[1];
+	}
+
+	if ($action == 'edit') {
+		// use the core profile edit page
+		$base_dir = elgg_get_root_path();
+		require "{$base_dir}pages/profile/edit.php";
+		return true;
+	}
+
+	// main profile page
+	//$params = array(
+	//	'content' => elgg_view('profile/wrapper'),
+	//	'num_columns' => 3,
+	//);
+	//$content = elgg_view_layout('widgets', $params);
+
+	$content=elgg_view('profile/wrapper');
+        
+  
+        
+        $content.=elgg_view("profile/degust",array('owner_guid'=>$user->getGUID()));
+        
+        $body = elgg_view_layout('one_column', array('content' => $content));
+	$body= elgg_view_page($user->name, $body);
+        echo $body;
+	return true;
+}
+
+
+
+
+
+/**
  * Profile URL generator for $user->getUrl();
  *
  * @param ElggUser $user

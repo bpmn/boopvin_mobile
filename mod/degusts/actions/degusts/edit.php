@@ -90,14 +90,17 @@ $options = array(
                  'full_view' => false,
                  'pagination' => true,
          );
+
+//MOBILE
 if (elgg_instanceof($page_owner_entity,'user')){
    $options['owner_guid'] =$page_owner_guid;
-   
+   $url=$page_owner_entity->getURL();
 }else{
-   $options['container_guid'] =$page_owner_guid; 
+   $options['container_guid'] =$container_guid;
+   $url=$degust->getContainerEntity()->getURL();
 }
-//MOBILE
-$url=$page_owner_entity->getURL();
+
+
 $list_degust=elgg_list_entities($options);
 $result=array("list_degust"=>$list_degust,"url"=>$url);
 

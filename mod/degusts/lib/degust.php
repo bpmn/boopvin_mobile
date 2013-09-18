@@ -192,8 +192,8 @@ function degust_handle_edit_page($page,$guid,$overlay) {
             $body = elgg_view_layout('degust_one_column', $params);
             echo elgg_view_page($title, $body,'overlay');
         }else{
-            elgg_load_js('elgg.degust_mobile');
-            elgg_load_js('elgg.validate');
+            //elgg_load_js('elgg.degust_mobile');
+            //elgg_load_js('elgg.validate');
             $body = elgg_view_layout('degust_one_column_mobile', $params);
             echo elgg_view_page($title, $body,'degust_normal');
             
@@ -227,17 +227,7 @@ function degust_handle_profile_page($guid,$overlay) {
 
 	//elgg_push_breadcrumb($wine->name);
         
-        if ($degust->canEdit()){
-                        //MOBILE
-                        $url = "edit/{$degust->getGUID()}/overlay";
-                        elgg_register_menu_item('edit_degust', array(
-				'name' => 'degust:edit',
-				'data-action' => $url,
-				'text' => elgg_echo('degust:edit'),
-				'link_class' => 'elgg-button elgg-button-action degust-edit',
-                                
-                                //'rel'=>'#overlay',
-			));}
+        
 
 	$content = elgg_view('degusts/profile/layout', array('entity' => $degust));
         $sidebar = elgg_view('degusts/profile/sidebar', array('entity' => $degust));
