@@ -55,7 +55,7 @@ $options['relationship'] = 'friend';*/
 
 
 
-$items_create=elgg_get_river(array('types'=>'group',
+/*$items_create=elgg_get_river(array('types'=>'group',
                                    'subtypes'=>array('wine','restobar'),
                                    'action_types'=>'create'));
 
@@ -68,18 +68,26 @@ $items_friend=elgg_get_river(array('relationship_guid'=>elgg_get_logged_in_user_
 $items=array_merge($items_create,$items_friend);
 usort($items, "time_created_cmp");
 
-//$items=$items_create;
+//$items=$items_create;*/
+//$options['pagination']=FALSE;
+//$options['limit']=30;
+//$options['items']=array_slice($items , 0 ,30);
+
+
+
+
+//$activity= elgg_view('page/components/list', $options);
+
+
+//usort($activity, "time_created_cmp");
+
+
+$options = array();
+//$options['action_types']=array("create");
 $options['pagination']=FALSE;
 $options['limit']=30;
-$options['items']=array_slice($items , 0 ,30);
-
-
-
-
-$activity= elgg_view('page/components/list', $options);
-
-
-usort($activity, "time_created_cmp");
+$options['type_subtype_pairs']=array('group'=>array('wine','restobar'),'object'=>'degust');
+$activity = elgg_list_river($options);
 
 if (!$activity) {
 	$activity = elgg_echo('river:none');
