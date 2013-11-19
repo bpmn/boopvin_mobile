@@ -14,6 +14,7 @@ $degust=$vars['entity'];
 $container=get_entity($vars['entity']->container_guid);
 $url_fiche= elgg_get_plugins_path()."/degusts/fiche/{$container->kind}.php";
 //require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . "/fiche/{$container->kind}.php");
+//MOBILE
 require_once($url_fiche);
 ?>
 <!--<fieldset>-->

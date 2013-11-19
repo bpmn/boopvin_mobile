@@ -82,7 +82,9 @@
    });     
         
    function degust_view_bind(){
-           
+            
+      
+       
        
            $(".degust-view").nyroModal({
                 callbacks: {             
@@ -479,7 +481,8 @@ $(".degust-requires-confirmation").click(function(e) {
             var page_guid=elgg.get_page_owner_guid();
             elgg.action(url,{
                     data:{page_owner_guid:page_guid},
-                    dataType :'json',
+                    //MOBILE
+					dataType :'json',
                     success: function(json) {
                                 $.nmTop().close();
                                 $('.degust_list').html(json.list_degust);

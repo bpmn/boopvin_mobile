@@ -208,7 +208,7 @@ function degust_handle_edit_page($page,$guid,$overlay) {
  * @param int $guid Group entity GUID
  */
 function degust_handle_profile_page($guid,$overlay) {
-        
+    
 	if ($overlay != "overlay"){
          gatekeeper();
         }
@@ -246,7 +246,6 @@ function degust_handle_profile_page($guid,$overlay) {
 	$body ="<div class='elgg-page-body-degust'>". elgg_view_layout('degust_one_sidebar', $params)."</div>";
         //$body = elgg_view_layout('content', $params);
         
-       
         if ($overlay =="overlay"){
             echo elgg_view_page($title, $body,'overlay');
         }else{
