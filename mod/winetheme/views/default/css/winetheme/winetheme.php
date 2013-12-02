@@ -51,7 +51,7 @@ width: 735px;
 
 #register_window {
 background: url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/images/layer9.png') no-repeat;
-background-position: center left;
+background-position: center top;
 
 text-align: left;
 width: 780px;
@@ -92,14 +92,6 @@ box-shadow:         -4px -4px 15px rgba(51, 50, 50, 0.75);
 text-align: center;
 
 }
-
-
-
-
-
-
-
-
 
 
 #index_welcome {

@@ -127,7 +127,7 @@ function search_get_highlighted_relevant_substrings($haystack, $query, $min_matc
 
 	if (!$tag_match) {
 		$words = search_remove_ignored_words($query, 'array');
-        } else {
+	} else {
 		$words = array();
 	}
 

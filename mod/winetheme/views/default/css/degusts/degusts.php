@@ -48,7 +48,6 @@ margin-left: auto;
 margin-right: auto;
 }
 
-
 .vigne_separator {
 clear:left;
 height: 33px;
