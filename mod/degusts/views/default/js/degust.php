@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 ?>
-    
+
 <?php if (FALSE) : ?>
     <script type="text/javascript">
-    <?php endif; ?>
+<?php endif; ?>
     
     elgg.provide('elgg.degust');
     
@@ -19,7 +19,7 @@
         /* les actions sur événements*/
         
         /* var add_degust = $(".degust-add").click(function(e){
-        e.preventDefault(); */  
+    e.preventDefault(); */  
         $(function() {
             $(".degust-add").nm({
                 
@@ -77,16 +77,16 @@
         // });
         
         
-   $( function() {
-    degust_view_bind();
-   });     
+        $( function() {
+            degust_view_bind();
+        });     
         
-   function degust_view_bind(){
+        function degust_view_bind(){
             
       
        
        
-           $(".degust-view").nyroModal({
+            $(".degust-view").nyroModal({
                 callbacks: {             
                     initElts: function() {
                         if (!elgg.is_logged_in()) {
@@ -95,10 +95,10 @@
                 
                             elgg.register_error(elgg.echo('loggedinrequired'));
                             $.nmTop().close();
-                    //e.preventDefault();
-                    //elgg.register_error(elgg.echo('loggedinrequired'))
-                    //elgg.forward('');
-                            };
+                            //e.preventDefault();
+                            //elgg.register_error(elgg.echo('loggedinrequired'))
+                            //elgg.forward('');
+                        };
                         
                         $(".elgg-page-topbar").css({
                             "z-index":" 0"
@@ -125,13 +125,13 @@
             });
                
           
-   }
+        }
         
         //les fonctions
         
         
         
-       function degust_edit (action){
+        function degust_edit (action){
             
             $(".degust-edit").click(function(e){    
                 
@@ -221,7 +221,7 @@
         
         
        
-       function degust_button() {
+        function degust_button() {
             
             var winefield = document.getElementById('metadatafield');
             var winecolor = winefield.getAttribute('data-winetype'); // winetype = "red"
@@ -391,135 +391,135 @@
         
         
         
-function degust_validate() {     
-    jQuery.validator.messages.required = "";
+        function degust_validate() {     
+            jQuery.validator.messages.required = "";
     
-    $("#degustform").validate({
-        submitHandler: function(form){
-            var url=$('#degustform').attr('action');
-            var data=$("#degustform :input").serialize();
-            var page_guid=elgg.get_page_owner_guid();
-            data=data+"&page_owner_guid="+page_guid;
-            //MOBILE
-            elgg.action(url,{
-                    data:data,
-                    dataType :'json',
-                    success: function(json) {
-                                $.nmTop().close();
-                                $('.degust_list').html(json.list_degust);
-                                degust_view_bind();
-                            }
-            
-                });
-        },
-
-        highlight: function(element, errorClass) {
-            $(element).parent().css({
-                "border-radius":"0px"
-            });
-            $(element).parent().css({
-                "box-shadow":"0px 0px 10px #ff0000"
-            });
-            
-            
-        },
-        
-        unhighlight: function(element, errorClass) {
-            $(element).parent().css({
-                "box-shadow":"none"
-            });
-            
-            
-        },
-        invalidHandler: function(e, validator) {
-            e.preventDefault();
-            var errors = validator.numberOfInvalids();
-            if (errors) {
-                var message = errors == 1
-                    ? 'You missed 1 field. It has been highlighted below'
-                : 'You missed ' + errors + ' fields.  They have been highlighted below';
-                alert(message);
-                //$("div.error span").html(message);
-                //$("div.error").show();
-                //$("div.validate_error_label label").css("color", "red");
-                
-                
-            } else {
-                //$("div.error").hide();
-                //$("div.validate_error_label label").css("color", "black");
-                
-                //var url=$('#degustform').attr('action').val();
-                //var data=$("#degustform :input").serializeArray();
-                //elgg.action(url,{data: data});
-                //$.nmTop().close();
-                
-                
-                
-                
-                
-            }
-        }
-    });
-}
-
-
-// soumettre la requête save par ajax 
-        
-function degust_event(){
-$("#degustform").submit(function(e){
-    e.preventDefault();
- 
-});
-
-$(".degust-requires-confirmation").click(function(e) {
-	var confirmText = $(this).attr('rel') || elgg.echo('question:areyousure');
-	if (!confirm(confirmText)) {
-		e.preventDefault();
-	}else{
-            e.preventDefault();
-            var url=$(this).attr('href');
-            var page_guid=elgg.get_page_owner_guid();
-            elgg.action(url,{
-                    data:{page_owner_guid:page_guid},
+            $("#degustform").validate({
+                submitHandler: function(form){
+                    var url=$('#degustform').attr('action');
+                    var data=$("#degustform :input").serialize();
+                    var page_guid=elgg.get_page_owner_guid();
+                    data=data+"&page_owner_guid="+page_guid;
                     //MOBILE
-					dataType :'json',
-                    success: function(json) {
-                                $.nmTop().close();
-                                $('.degust_list').html(json.list_degust);
-                                degust_view_bind();
-                            }
+                    elgg.action(url,{
+                        data:data,
+                        dataType :'json',
+                        success: function(json) {
+                            $.nmTop().close();
+                            $('.degust_list').html(json.list_degust);
+                            degust_view_bind();
+                        }
             
-                });
+                    });
+                },
+
+                highlight: function(element, errorClass) {
+                    $(element).parent().css({
+                        "border-radius":"0px"
+                    });
+                    $(element).parent().css({
+                        "box-shadow":"0px 0px 10px #ff0000"
+                    });
+            
+            
+                },
+        
+                unhighlight: function(element, errorClass) {
+                    $(element).parent().css({
+                        "box-shadow":"none"
+                    });
+            
+            
+                },
+                invalidHandler: function(e, validator) {
+                    e.preventDefault();
+                    var errors = validator.numberOfInvalids();
+                    if (errors) {
+                        var message = errors == 1
+                            ? 'You missed 1 field. It has been highlighted below'
+                        : 'You missed ' + errors + ' fields.  They have been highlighted below';
+                        alert(message);
+                        //$("div.error span").html(message);
+                        //$("div.error").show();
+                        //$("div.validate_error_label label").css("color", "red");
+                
+                
+                    } else {
+                        //$("div.error").hide();
+                        //$("div.validate_error_label label").css("color", "black");
+                
+                        //var url=$('#degustform').attr('action').val();
+                        //var data=$("#degustform :input").serializeArray();
+                        //elgg.action(url,{data: data});
+                        //$.nmTop().close();
+                
+                
+                
+                
+                
+                    }
+                }
+            });
         }
-    });
 
 
-}
+        // soumettre la requête save par ajax 
+        
+        function degust_event(){
+            $("#degustform").submit(function(e){
+                e.preventDefault();
+ 
+            });
 
-function option_price(){
-var array_euro=new Array("","&lt;6€","6€-10€","10€-15€","15€-20€","20€-25€","25€-30€","30€-40€","40€-50€","60€-70€","70€-80€","80€-100€","&gt;100€");
-var array_dollar=new Array("","&lt;$10","$10-$15","$15-$20","$20-$25","$25-$30","$30-$40","$40-$50","$60-$70","$70-$80","$80-$100","&gt;$100");
-var array_livre=new Array("","&lt;£10","£10-£15","£15-£20","£20-£25","£25-£30","£30-£40","£40-£50","£60-£70","£70-£80","£80-£100","&gt;£100");
-    $('input[name$="currency"]').change(function(){
-        var monnaie=$(this).val();
-        var list_option;
-        if (monnaie == 'euro')
-            list_option=array_euro;
-        if (monnaie == 'dollar')
-            list_option=array_dollar;
-        if (monnaie == 'livre')
-            list_option=array_livre;
+            $(".degust-requires-confirmation").click(function(e) {
+                var confirmText = $(this).attr('rel') || elgg.echo('question:areyousure');
+                if (!confirm(confirmText)) {
+                    e.preventDefault();
+                }else{
+                    e.preventDefault();
+                    var url=$(this).attr('href');
+                    var page_guid=elgg.get_page_owner_guid();
+                    elgg.action(url,{
+                        data:{page_owner_guid:page_guid},
+                        //MOBILE
+                        dataType :'json',
+                        success: function(json) {
+                            $.nmTop().close();
+                            $('.degust_list').html(json.list_degust);
+                            degust_view_bind();
+                        }
             
-        $('select[name$="price"]').empty();
-        $.each(list_option, function(key,value) {
-            $('select[name$="price"]').append($("<option></option>").html(value));});
-    });
-}
+                    });
+                }
+            });
+
+
+        }
+
+        function option_price(){
+            var array_euro=new Array("","&lt;6€","6€-10€","10€-15€","15€-20€","20€-25€","25€-30€","30€-40€","40€-50€","40€-50€","60€-70€","70€-80€","80€-100€","&gt;100€");
+            var array_dollar=new Array("","&lt;$10","$10-$15","$15-$20","$20-$25","$25-$30","$30-$40","$40-$50","$50-$60","$60-$70","$70-$80","$80-$100","&gt;$100");
+            var array_livre=new Array("","&lt;£10","£10-£15","£15-£20","£20-£25","£25-£30","£30-£40","£40-£50","£50-£60","£60-£70","£70-£80","£80-£100","&gt;£100");
+            $('input[name$="currency"]').change(function(){
+                var monnaie=$(this).val();
+                var list_option;
+                if (monnaie == 'euro')
+                    list_option=array_euro;
+                if (monnaie == 'dollar')
+                    list_option=array_dollar;
+                if (monnaie == 'livre')
+                    list_option=array_livre;
+            
+                $('select[name$="price"]').empty();
+                $.each(list_option, function(key,value) {
+                    $('select[name$="price"]').append($("<option></option>").html(value));});
+            });
+        }
 
         
- }
+    }
  
-elgg.register_hook_handler('init', 'system', elgg.degust.init);
+    elgg.register_hook_handler('init', 'system', elgg.degust.init);
 
 
 <?php if (FALSE) : ?></script><?php endif; ?>

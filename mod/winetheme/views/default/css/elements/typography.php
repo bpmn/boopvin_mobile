@@ -11,7 +11,7 @@
 /* ***************************************
 	Typography
 *************************************** */
-@font-face {
+/*@font-face {
     font-family: 'NotethisRegular';
     src: url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/fonts/Note-this-fontfacekit/Note_this-webfont.eot');
     src: url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/fonts/Note-this-fontfacekit/Note_this-webfont.eot?#iefix') format('embedded-opentype'),
@@ -20,7 +20,19 @@
          url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/fonts/Note-this-fontfacekit/Note_this-webfont.svg#NotethisRegular') format('svg');
     font-weight: normal;
     font-style: normal;
+}*/
+
+@font-face {
+    font-family: 'NotethisRegular';
+    src: url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/fonts/bocklin/bocklin-webfont.eot');
+    src: url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/fonts/bocklin/bocklin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/fonts/bocklin/bocklin-webfont.woff') format('woff'),
+         url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/fonts/bocklin/bocklin-webfont.ttf') format('truetype'),
+         url('<?php echo $vars['url']; ?>/mod/winetheme/views/default/css/winetheme/fonts/bocklin/bocklin-webfont.svg#NotethisRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
+
 
 
 body {
